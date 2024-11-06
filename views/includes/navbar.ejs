@@ -1,0 +1,86 @@
+<style>
+  .search-btn {
+    background-color: #7aae32;
+    color: white;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+  .search-btn:hover {
+    background-color: #98bf17;
+    color: white;
+  }
+  .search-btn:active {
+    background-color: #98bf17;
+    color: white;
+  }
+
+  .search-btn i {
+    display: inline;
+  }
+  .search-info {
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 0.8rem;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body border-bottom sticky-top">
+  <div class="container-fluid bg-white">
+    <a class="navbar-brand" href="/listings"
+      ><img width="55px" src="/images/odyssey.png"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <form
+          class="d-flex"
+          role="search"
+          onsubmit="return false;"
+          action="/search"
+          method="get"
+        >
+          <input
+            class="search-info"
+            type="search"
+            id="searchInput"
+            placeholder="Search Destinations"
+            class="form-control me-2"
+            aria-label="Search"
+          />
+          <button class="btn search-btn" id="searchBtn" type="submit">
+            <i class="fa-solid fa-bullseye"></i>
+          </button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Create New Odyssey</a>
+        <% if (!currUser) { %>
+        <a class="nav-link" href="/signup"><b>Signup</b></a>
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %> <% if (currUser) { %>
+        <a class="nav-link" href="/logout"><b>log out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+<script>
+  document.getElementById("searchBtn").onclick = function () {
+    const query = document.getElementById("searchInput").value.trim();
+    if (query) {
+      window.location.href = `/listings?query=${encodeURIComponent(query)}`;
+    } else {
+      alert("Please enter a search term.");
+    }
+  };
+</script>

@@ -3,9 +3,7 @@ const router = express.Router();
 const User = require("../models/user.js");
 const wrapAsync = require("../utils/wrapAsync");
 const passport = require("passport");
-const {
-  saveRedirectUrl,
-} = require("/Users/gopinaths/Class/ MP1/middleware.js");
+const { saveRedirectUrl } = require("../middleware.js");
 const userController = require("../controller/user.js");
 
 router.route("/").get(userController.renderHomePage);
